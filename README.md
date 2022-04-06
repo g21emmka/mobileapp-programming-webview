@@ -1,39 +1,48 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+Jag har ändrat appens namn, detta gjorde jag genom att gå in i filen strings.xml och sedan ändra namnet under app_name.
+För att ge appen tillgång till internet så gick jag in i filen AndroidManifest.xml och la till en uses-permission.
 
-_Du kan ta bort all text som finns sedan tidigare_.
+Sedan bytte jag ut TextView i filen content_main.xml till en WebView och gav den ett id.
 
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+Därefter så skapade jag en variabel av typen WebView som jag gav namnet myWebView, detta i filen MainActivity.java.
+I samma fil så skapade jag sedan en url till en extern webbsida. För att sidan ska öppnas i appen när man klickar på den så
+skapade jag en WebViewClient och fäster denna till WebView.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+WebView myWebView;
+
+```
+
+```
+  myWebView = findViewById(R.id.web_view);
+```
+
+För att skapa en så kallas intern webbsida så började jag med att skapa en ny mapp kallad assets och sedan en html fil, denna filen
+döpte jag till info.html. Efter detta så la jag till url:n till denna sidan i MainActivity.java.
+
+I appen finns tre punkter längst upp till höger, som är en så kallad dropdown meny. För att kunna hamna på de två sidor som lagts
+till genom att klicka i dropdown meny på 'External Web Page' respektive 'Internal Web Page', så la jag till
+`showExternalWebPage()` and `showInternalWebPage()` i MainAcitivity. java filen.
+
+
+```
+    public void showExternalWebPage(){
+        myWebView.loadUrl("https://his.se");
     }
-}
+
+    public void showInternalWebPage(){
+        myWebView.loadUrl("file:///android_asset/info.html");
+    }
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+Den externa webbsidan:
+![](Assignment2.png)
+
+Den interna webbsidan;
+![](Assignment2-bild2.png)
 
 Läs gärna:
 
